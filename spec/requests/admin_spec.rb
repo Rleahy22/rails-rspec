@@ -8,7 +8,6 @@ describe 'Admin' do
   end
 
   context "on admin homepage" do
-    it "can delete a post by clicking the delete link next to a post"
 
     it "can see a list of recent posts" do
       page.should have_content @post.title
@@ -18,6 +17,11 @@ describe 'Admin' do
       click_link "Edit"
       current_url.should eq edit_admin_post_url(@post)
     end
+
+    it "can delete a post by clicking the delete link next to a post" do
+      expect { click_link "Delete" }.to change { Post.count }.from(1).to(0)
+    end
+
     it "can create a new post and view it" do
        visit new_admin_post_url
 
