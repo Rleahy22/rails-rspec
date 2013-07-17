@@ -47,12 +47,17 @@ describe 'Admin' do
   end
 
   context "on post show page" do
-    it "can see an edit link that takes you to the edit post path"
     it "can go to the admin homepage by clicking the Admin welcome page link"
     it "can visit a post show page by clicking the title" do
       visit admin_post_path(@post)
       click_link @post.title
       current_url.should eq post_url(@post)
+    end
+
+    it "can see an edit link that takes you to the edit post path" do
+      visit admin_post_path(@post)
+      click_link 'Edit post'
+      current_url.should eq edit_admin_post_url(@post)
     end
   end
 end
