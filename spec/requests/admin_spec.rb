@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe 'Admin' do
+  before do
+    @post = Post.create!(title: "Test Post", content: "test content", is_published: true)
+    page.driver.browser.authorize 'geek', 'jock'
+    visit admin_posts_path
+  end
+
   context "on admin homepage" do
     it "can see a list of recent posts"
     it "can edit a post by clicking the edit link next to a post"
