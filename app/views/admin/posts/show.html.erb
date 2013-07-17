@@ -7,5 +7,5 @@
 <br>
 <br>
 Published: <%= @post.is_published? %>
-<h1><%= @post.title %></h1>
+<h1><%= link_to @post.title, post_path(@post) %></h1>
 <%= simple_format @post.content %>
