@@ -8,9 +8,12 @@ describe 'Admin' do
   end
 
   context "on admin homepage" do
-    it "can see a list of recent posts"
     it "can edit a post by clicking the edit link next to a post"
     it "can delete a post by clicking the delete link next to a post"
+
+    it "can see a list of recent posts" do
+      page.should have_content @post.title
+    end
     it "can create a new post and view it" do
        visit new_admin_post_url
 
@@ -28,8 +31,9 @@ describe 'Admin' do
 
   context "editing post" do
     it "can mark an existing post as unpublished" do
-      pending # remove this line when you're working on implementing this test
-
+      visit edit_admin_post_path(@post)
+      uncheck('post_is_published')
+      click_button 'Save'
       page.should have_content "Published: false"
     end
   end
